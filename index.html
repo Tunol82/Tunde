@@ -3,239 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salesforce Administrator Portfolio</title>
+    <title>Salesforce Marketing Cloud Consultant - Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Slate-50 */
-            color: #1e293b; /* Slate-800 */
+            background-color: #f0f2f5; /* Light gray background */
         }
         /* Custom scrollbar for a cleaner look */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #e2e8f0; /* Slate-200 */
-            border-radius: 10px;
+            background: #f0f2f5;
         }
         ::-webkit-scrollbar-thumb {
-            background: #64748b; /* Slate-500 */
-            border-radius: 10px;
+            background: #a0a0a0;
+            border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #475569; /* Slate-600 */
+            background: #777;
+        }
+
+        /* Keyframe animation for the background gradient pan */
+        @keyframes background-pan {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Apply the gradient animation */
+        .animate-gradient {
+            background-size: 200% 200%; /* Make gradient larger than container for panning effect */
+            animation: background-pan 12s ease-in-out infinite alternate; /* Pan back and forth, slightly slower */
+        }
+
+        /* Keyframe animation for text shine effect */
+        @keyframes text-shine {
+            0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.4), 0 0 20px rgba(255,255,255,0.2); }
+            50% { text-shadow: 0 0 30px rgba(255,255,255,0.9), 0 0 60px rgba(255,255,255,0.6); }
+        }
+        .text-shine {
+            animation: text-shine 5s ease-in-out infinite; /* Apply shine animation */
+        }
+
+        /* Custom underline for the name */
+        .name-underline {
+            position: relative;
+            display: inline-block; /* Essential for span width */
+        }
+        .name-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; /* Adjust distance from text */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%; /* Width of the line */
+            height: 3px; /* Thickness of the line */
+            background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            border-radius: 2px;
+        }
+
+        /* Subtle glow on hover for project cards */
+        .project-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 0 2px rgba(99,102,241,0.5); /* Primary color border glow */
+            transform: translateY(-3px); /* Slight lift */
+        }
+
+        /* Tooltip style for contact links (if needed for future) */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the text */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* At the bottom of the tooltip */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Custom styling for tool/skill tags on hover */
+        .skill-tag:hover {
+            background-color: #6366f1; /* Indigo-500 */
+            color: #fff;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
     </style>
 </head>
-<body class="antialiased">
-    <!-- Header/Navigation Bar -->
-    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg py-4">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold rounded-md hover:opacity-90 transition-opacity">Babatunde Oladeji</a>
-            <div class="space-x-6">
-                <a href="#about" class="text-lg hover:text-blue-200 transition-colors p-2 rounded-md">About</a>
-                <a href="#skills" class="text-lg hover:text-blue-200 transition-colors p-2 rounded-md">Skills</a>
-                <a href="#portfolio" class="text-lg hover:text-blue-200 transition-colors p-2 rounded-md">Portfolio</a>
-                <a href="#contact" class="text-lg hover:text-blue-200 transition-colors p-2 rounded-md">Contact</a>
-            </div>
-        </nav>
-    </header>
+<body class="text-gray-800 antialiased leading-relaxed">
 
     <!-- Hero Section -->
-    <section id="hero" class="bg-gray-100 py-20 md:py-32 flex items-center justify-center min-h-screen-75">
-        <div class="container mx-auto px-4 text-center md:flex md:items-center md:justify-center md:text-left">
-            <div class="md:w-1/2 flex justify-center md:justify-end mb-8 md:mb-0 md:pr-10">
-                <!-- Placeholder for professional photo -->
-                <img src="https://placehold.co/300x300/e0e7ff/4f46e5?text=Your+Photo" alt="Your Professional Photo" class="w-64 h-64 md:w-80 md:h-80 rounded-full shadow-2xl object-cover border-4 border-white transform hover:scale-105 transition-transform duration-300 ease-in-out">
-            </div>
-            <div class="md:w-1/2">
-                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-4 animate-fade-in-down">
-                    Hello, I'm <span class="text-blue-600">Babatunde Oladeji</span>
-                </h1>
-                <p class="text-2xl md:text-3xl text-gray-700 mb-6 font-medium animate-fade-in-up">
-                    A Senior Salesforce Administrator
+    <header class="bg-gradient-to-br from-blue-700 via-indigo-700 to-purple-800 text-white py-28 px-4 sm:px-6 lg:px-8 shadow-2xl relative overflow-hidden animate-gradient rounded-xl border border-white border-opacity-30 mx-4 sm:mx-6 lg:mx-8 mt-4 mb-8">
+        <div class="max-w-7xl mx-auto flex flex-col items-center justify-center relative z-10">
+            <div class="text-center mb-10 md:mb-0">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight text-shine name-underline" style="letter-spacing: -0.02em;">Babatunde Olayiwola Oladeji</h1>
+                <p class="text-xl sm:text-2xl lg:text-3xl font-medium mb-6 opacity-95 drop-shadow-md" style="letter-spacing: 0.05em;">Salesforce Marketing Cloud Consultant</p>
+                <p class="text-lg sm:text-xl opacity-90 max-w-3xl mx-auto">
+                    Crafting innovative marketing automation strategies and driving engagement with data-driven solutions.
                 </p>
-                <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-lg mx-auto md:mx-0 animate-fade-in-up delay-100">
-                    Empowering businesses through robust Salesforce automation, data management, and strategic solutions.
+            </div>
+            <!-- Optional: Add a profile picture here -->
+            <!-- <div class="flex-shrink-0 mt-8">
+                <img src="https://placehold.co/180x180/667eea/ffffff?text=Profile" alt="Profile Picture" class="rounded-full border-4 border-white shadow-lg w-40 h-40 sm:w-48 sm:h-48">
+            </div> -->
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto bg-white p-8 sm:p-10 lg:p-12 rounded-xl shadow-lg border border-gray-200">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-blue-700 mb-8">About Me</h2>
+            <div class="prose max-w-none text-gray-700 leading-relaxed text-lg">
+                <p class="mb-4">
+                    As a Salesforce Marketing Cloud Consultant with <strong class="text-blue-700">over 2 years</strong> of hands-on experience, I specialize in delivering real-world and simulation-based projects, primarily honed through my time at BlackForce Training Institute. There, I also serve as a <strong class="text-blue-700">Marketing Cloud Admin and instructor</strong>, passionately preparing over 60+ students for both the Admin and Email Specialist certifications, proudly achieving a 70%+ pass rate.
                 </p>
-                <a href="#portfolio" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl text-lg inline-block">
-                    View My Projects
-                </a>
+                <p>
+                    My broader professional journey spans over 7 years across tech, e-commerce, and customer-centric roles. This diverse background significantly enhances my ability to design, build, and optimize effective, customer-centric marketing automation strategies that truly drive results.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- About Me / Skills Section -->
-    <section id="skills" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">My Expertise & Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Skill Card 1: SF Automation -->
-                <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border border-blue-200">
-                    <h3 class="text-2xl font-semibold text-blue-800 mb-4">Salesforce Automation</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Expert in designing, implementing, and optimizing complex automation workflows using Flow, Process Builder, Workflow Rules, and Apex Triggers to streamline business processes.
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-blue-700 mb-12">Projects Implemented</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+
+                <!-- Project 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 project-card transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">E-commerce Retention Campaign</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Designed and implemented an automated journey using Journey Builder, Email Studio, and AMPscript to deliver personalized product recommendations and abandoned cart follow-ups. This real-world project resulted in a <strong class="text-green-600">41%+ open rate</strong> and <strong class="text-green-600">21%+ click-through rate</strong>.
                     </p>
+                    <ul class="list-disc list-inside text-gray-600 text-base space-y-1">
+                        <li>Tools: Journey Builder, Email Studio, AMPscript</li>
+                        <li>Outcome: 41%+ open rate, 21%+ click-through rate</li>
+                    </ul>
                 </div>
-                <!-- Skill Card 2: Data Management -->
-                <div class="bg-green-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border border-green-200">
-                    <h3 class="text-2xl font-semibold text-green-800 mb-4">Data Management & Governance</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Proficient in data migration, cleansing, de-duplication, and ensuring data integrity. Experienced with Data Loader, Import Wizards, and third-party tools.
+
+                <!-- Project 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 project-card transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">Trainee Onboarding Journey – BlackForce Training Institute</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Integrated Marketing Cloud with Salesforce CRM via Marketing Cloud Connect, using SQL segmentation and dynamic content to deliver personalized onboarding journeys to new trainees. This improved onboarding engagement by <strong class="text-green-600">over 95%</strong>.
                     </p>
+                    <ul class="list-disc list-inside text-gray-600 text-base space-y-1">
+                        <li>Tools: Marketing Cloud Connect, SQL Segmentation, Dynamic Content</li>
+                        <li>Outcome: 95%+ improvement in onboarding engagement</li>
+                    </ul>
                 </div>
-                <!-- Skill Card 3: Analytics -->
-                <div class="bg-purple-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border border-purple-200">
-                    <h3 class="text-2xl font-semibold text-purple-800 mb-4">Reports & Dashboards</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Skilled in creating insightful custom reports and dynamic dashboards that provide actionable intelligence for sales, service, and marketing teams.
+
+                <!-- Project 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 project-card transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">Lead Capture & Real-Time Triggers</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Created Cloud Pages for lead collection and configured API-based triggers to send real-time confirmation emails. The process enhanced response efficiency by <strong class="text-green-600">61%</strong>, showcasing seamless integration and automation.
                     </p>
+                    <ul class="list-disc list-inside text-gray-600 text-base space-y-1">
+                        <li>Tools: Cloud Pages, REST & SOAP APIs</li>
+                        <li>Outcome: 61% enhanced response efficiency</li>
+                    </ul>
                 </div>
-                <!-- Skill Card 4: Integration -->
-                <div class="bg-yellow-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border border-yellow-200">
-                    <h3 class="text-2xl font-semibold text-yellow-800 mb-4">Integration Strategies</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Experience with integrating Salesforce with external systems using REST/SOAP APIs, middleware platforms, and AppExchange solutions for seamless data flow.
+
+                <!-- Project 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 project-card transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">Audience Segmentation & Campaign Automation</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Utilized Automation Studio and SQL Query Activities to segment audiences based on behavior and profile data. These targeted strategies led to a <strong class="text-green-600">31–51% increase in engagement</strong> and improved campaign accuracy.
                     </p>
+                    <ul class="list-disc list-inside text-gray-600 text-base space-y-1">
+                        <li>Tools: Automation Studio, SQL Query Activities</li>
+                        <li>Outcome: 31–51% increase in engagement, improved accuracy</li>
+                    </ul>
                 </div>
-                <!-- Skill Card 5: Change Management & Adoption -->
-                <div class="bg-red-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border border-red-200">
-                    <h3 class="text-2xl font-semibold text-red-800 mb-4">Change Management & User Adoption</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        A strong advocate for user adoption, I implement effective training programs, user documentation, and provide ongoing support to maximize Salesforce ROI.
+
+                <!-- Template for Future Projects (Copy and Paste to add more) -->
+                <!--
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 project-card transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">Future Project Title Here</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Brief description of your future project, highlighting your role, challenges, and solutions.
+                        Remember to add key metrics or achievements here!
                     </p>
+                    <ul class="list-disc list-inside text-gray-600 text-base space-y-1">
+                        <li>Tools: List tools used</li>
+                        <li>Outcome: Quantifiable results</li>
+                    </ul>
                 </div>
-                <!-- Skill Card 6: Testing & Deployment -->
-                <div class="bg-teal-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border border-teal-200">
-                    <h3 class="text-2xl font-semibold text-teal-800 mb-4">Testing & Deployment</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Proficient in managing Salesforce releases, including sandbox refreshes, change sets, and metadata API deployments, ensuring minimal disruption.
-                    </p>
-                </div>
-                <!-- Skill Card 7: Security & Compliance -->
-                <div class="bg-indigo-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border border-indigo-200">
-                    <h3 class="text-2xl font-semibold text-indigo-800 mb-4">Security & Compliance</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Implementing robust security models (profiles, permission sets, OWDs, sharing rules) and ensuring compliance with data privacy regulations (GDPR, CCPA).
-                    </p>
-                </div>
+                -->
+
+            </div>
+            <div class="text-center mt-12">
+                <p class="text-xl text-gray-700 font-medium text-blue-700">More exciting projects coming soon!</p>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Projects Section -->
-    <section id="portfolio" class="py-16 md:py-24 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">My Portfolio Projects</h2>
-            <p class="text-xl text-center text-gray-700 mb-10 max-w-2xl mx-auto">
-                Here are some of the Salesforce projects I've worked on. This section will be updated with new projects soon!
+    <!-- Skills & Tools Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto bg-white p-8 sm:p-10 lg:p-12 rounded-xl shadow-lg border border-gray-200">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-blue-700 mb-8">Tools & Technologies</h2>
+            <div class="flex flex-wrap justify-center gap-4 text-center">
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Journey Builder</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Email Studio</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Mobile Studio</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Cloud Pages</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">AMPscript</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">SSJS</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">SQL Query Activities</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Automation Studio</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Contact Builder</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Data Extensions</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Marketing Cloud Connect</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">REST & SOAP APIs</span>
+                <span class="bg-blue-100 text-blue-800 px-5 py-2 rounded-full font-medium text-lg shadow-sm skill-tag transition-all duration-200 hover:scale-105">Reporting & Tracking Tools</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Contact Section -->
+    <section id="contact" class="bg-indigo-700 text-white py-20 px-4 sm:px-6 lg:px-8 text-center shadow-inner rounded-xl mx-4 sm:mx-6 lg:mx-8 mb-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-6">Let's Connect!</h2>
+            <p class="text-lg sm:text-xl mb-8 opacity-90 leading-relaxed">
+                Are you looking to optimize your marketing automation or need expert guidance on Salesforce Marketing Cloud? I'm always open to discussing new opportunities and delivering exceptional results.
             </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 (Example) -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 transform hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/edf2f7/4a5568?text=Project+Image+1" alt="Project 1" class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Automated Lead Routing System</h3>
-                        <p class="text-gray-600 mb-4">
-                            Designed and implemented a complex Salesforce Flow to automatically assign leads to sales representatives based on territory, product interest, and lead score. Reduced manual lead assignment time by 70%.
-                        </p>
-                        <ul class="flex flex-wrap gap-2 text-sm mb-4">
-                            <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Salesforce Flow</li>
-                            <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Lead Management</li>
-                            <li class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Automation</li>
-                        </ul>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">View Details &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- Project Card 2 (Example) -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 transform hover:scale-105 transition-transform duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/e2e8f0/4a5568?text=Project+Image+2" alt="Project 2" class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Service Cloud Omni-Channel Setup</h3>
-                        <p class="text-gray-600 mb-4">
-                            Configured Omni-Channel routing for cases, enabling efficient distribution of service requests to agents based on their capacity and skill sets. Improved response times by 30%.
-                        </p>
-                        <ul class="flex flex-wrap gap-2 text-sm mb-4">
-                            <li class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Service Cloud</li>
-                            <li class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Omni-Channel</li>
-                            <li class="bg-green-100 text-green-800 px-3 py-1 rounded-full">Customer Service</li>
-                        </ul>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">View Details &rarr;</a>
-                    </div>
-                </div>
-
-                <!-- Future Project Placeholder 1 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 text-center flex flex-col justify-center items-center p-6 h-full min-h-[300px]">
-                    <svg class="w-20 h-20 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Upcoming Project</h3>
-                    <p class="text-gray-500">
-                        Stay tuned for my next project showcasing Salesforce integration capabilities!
-                    </p>
-                </div>
-
-                <!-- Future Project Placeholder 2 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 text-center flex flex-col justify-center items-center p-6 h-full min-h-[300px]">
-                    <svg class="w-20 h-20 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Future Data Analytics Dashboard</h3>
-                    <p class="text-gray-500">
-                        Working on a project focused on advanced Salesforce reporting and dashboard creation.
-                    </p>
-                </div>
-
-                <!-- Future Project Placeholder 3 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 text-center flex flex-col justify-center items-center p-6 h-full min-h-[300px]">
-                    <svg class="w-20 h-20 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-2">Security & Compliance Initiative</h3>
-                    <p class="text-gray-500">
-                        Developing a project to enhance Salesforce security posture and compliance.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Get In Touch</h2>
-            <p class="text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
-                Have a project in mind or just want to chat about Salesforce? Feel free to reach out!
-            </p>
-            <div class="flex flex-col items-center space-y-6 md:space-y-0 md:flex-row md:justify-center md:space-x-8">
-                <a href="mailto:your.tunol82@gmail.com@example.com" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl text-lg flex items-center space-x-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7"></path>
-                    </svg>
-                    <span>tunol82@gmail.com Me</span>
-                </a>
-                <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl text-lg flex items-center space-x-2">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38A2.48 2.48 0 012.5 1S3.61 1 4.98 1s2.48 1.119 2.48 2.5zm.02 4.07h-4.96V24h4.96zM22.02 18.23c-.01-2.4-1.7-4.43-4.08-4.43-1.63 0-2.88.94-3.57 2.05h-.05v-1.78H10.5v12.23h4.94v-7.14c0-1.92.7-3.23 2.52-3.23 1.7 0 2.5 1.22 2.5 3.23v7.14h4.95v-7.85z"></path>
-                    </svg>
-                    <span>LinkedIn</span>
-                </a>
+            <a href="mailto:tunol82@gmail.com" class="inline-block bg-white text-indigo-700 hover:bg-gray-100 px-10 py-5 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                Say Hello!
+            </a>
+            <div class="mt-10 text-base opacity-80">
+                <p class="mb-2">Email: <a href="mailto:tunol82@gmail.com" class="underline hover:text-gray-200 transition-colors duration-200">tunol82@gmail.com</a></p>
+                <p>LinkedIn: <a href="https://linkedin.com/in/oladeji-babatunde-759a7959" target="_blank" class="underline hover:text-gray-200 transition-colors duration-200">linkedin.com/in/oladeji-babatunde-759a7959</a></p>
+                <!-- Add other social links or contact details as needed -->
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4 text-center text-gray-400">
-            &copy; 2025 Babatunde Oladeji. All rights reserved. | Built with ❤️ and Tailwind CSS.
+    <footer class="bg-gray-800 text-gray-300 py-8 px-4 sm:px-6 lg:px-8 text-center text-sm">
+        <div class="max-w-6xl mx-auto">
+            &copy; <span id="current-year"></span> Babatunde Olayiwola Oladeji. All rights reserved.
+            <p class="mt-2 text-xs opacity-70">Designed with passion and expertise.</p>
         </div>
     </footer>
+
+    <script>
+        // Dynamically set the current year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
